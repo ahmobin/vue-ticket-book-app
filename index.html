@@ -109,7 +109,7 @@
                         <input type="text" placeholder="Name" v-model="name">
                         <input type="text" placeholder="Mobile" v-model="mobile">
                     </div>
-                    <button class="confirm-button" @click="confirm">Confirm</button>
+                    <button class="confirm-button" :disabled="name.length < 1 || mobile.length < 1" @click="confirm">Confirm</button>
                 </div>
             </div>
         </div>
