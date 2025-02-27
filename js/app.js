@@ -156,7 +156,10 @@ createApp({
               code: "200TAKAOFF",
               discount: 200
             }
-          ]
+          ],
+          name: "",
+          mobile: "",
+          confirmed: false
         }
     },
 
@@ -193,6 +196,26 @@ createApp({
 
             clickedSeat.type = clickedSeat.type == 'selected' ? 'available' : 'selected';
         },
+
+        confirm(){
+          if(!this.name || !this.mobile){
+            alert("please enter name and mobile number");
+            return;
+          }
+          this.confirmed = true;
+        },
+
+        resetData(){
+          this.confirmed = false;
+          this.name = "",
+          this.mobile = "",
+          this.appliedCoupon = null;
+          this.seats.forEach((seat) => {
+            if(seat.type == 'selected'){
+              seat.type = 'sold';
+            }
+          })
+        }
     },
 
     watch: {

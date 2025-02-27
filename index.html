@@ -12,6 +12,35 @@
         <h1 class="app-title">Ticket Booking App</h1>
 
         <div class="ticket-app">
+
+            <div class="confirmed-dialog" v-if="confirmed">
+                <h3>Ticket Confirmed</h3>
+                <hr>
+                <br>
+                <table class="selected-seats">
+                    <tr>
+                        <th>Passenger Name</th>
+                        <td>{{ name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Passenger Mobile</th>
+                        <td>{{ mobile }}</td>
+                    </tr>
+                    <tr>
+                        <th>Seats:</th>
+                        <td>
+                            <div v-for="(seat,i) in selectedSeats" :key="seat.name">{{ seat.name }}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Total Cost</th>
+                        <td>Tk. {{ totalCost }}</td>
+                    </tr>
+                </table>
+                <br>
+                <button class="confirm-button" @click="resetData">Book Again</button>
+            </div>
+
             <div class="ticket-app__top">
                 <div class="seat-states">
                     <div class="seat-state" v-for="(value, key) in seatStates">
@@ -76,6 +105,11 @@
                         <p v-if="appliedCoupon === null">Have a coupon? <input type="text" v-model="couponCode" placeholder="10 Digit Code"></p>
                         <p v-else>Applied Coupon : {{ appliedCoupon.code }}</p>
                     </div>
+                    <div class="info">
+                        <input type="text" placeholder="Name" v-model="name">
+                        <input type="text" placeholder="Mobile" v-model="mobile">
+                    </div>
+                    <button class="confirm-button" @click="confirm">Confirm</button>
                 </div>
             </div>
         </div>
